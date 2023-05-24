@@ -47,4 +47,10 @@ public class Order {
                 // Include other fields in the string representation
                 '}';
     }
+
+    public Object getStatus() {
+    }
+
+    public void setStatus(Object status) {
+    }
 }
