@@ -1,8 +1,7 @@
 package client.kafka;
 
 import com.example.client.model.Order;
-import com.example.client.repository.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class OrderStatusListener {
         OrderRepository orderRepository = new OrderRepository();
         Order existingOrder = orderRepository.findById(updatedOrder.getId());
         if (existingOrder != null) {
-            existingOrder.setStatus(updatedOrder.getStatus());
+            existingOrder.setOrderStatus(updatedOrder.getOrderStatus());
             orderRepository.save(existingOrder);
         }
     }

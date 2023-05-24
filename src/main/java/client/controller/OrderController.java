@@ -1,7 +1,8 @@
 package client.controller;
 
+import com.example.client.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,26 +13,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/orders")
-
 public class OrderController {
 
-    private final KafkaTemplate<String, Order> kafkaTemplate;
+    private final KafkaTemplate<Long, Order> kafkaTemplate;
     private final Map<Long, Order> orderMap;
 
     @Autowired
-    public OrderController(KafkaTemplate<String, Order> kafkaTemplate) {
+    public OrderController(KafkaTemplate<Long, Order> kafkaTemplate, Map<Long, Order> orderMap) {
         this.kafkaTemplate = kafkaTemplate;
-        this.orderMap = new HashMap<>();
+        this.orderMap = orderMap;
     }
 
-    @PostMapping
-    public void receiveOrder(@RequestBody Order order) {
+    @PostMapping("/api/orders")
+    public ResponseEntity<String> receiveOrder(@RequestBody Order order) {
         // Save the order in the map
         orderMap.put(order.getId(), order);
 
+
         // Publish the order to Kafka
-        kafkaTemplate.send("order-topic", order.getId(), order);
+        kafkaTemplate.send("order-topic", order.getId() , order);
+                return ResponseEntity.ok("Success");
       ///have issue
     }
 }
+//об map створено окремо, щоб контролер окремо зчитутався там де кафка

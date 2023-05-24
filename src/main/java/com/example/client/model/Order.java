@@ -39,18 +39,6 @@ public class Order {
         this.orderSummary = orderSummary;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", customerName='" + customerName + '\'' +
-                // Include other fields in the string representation
-                '}';
-    }
+ }
 
-    public Object getStatus() {
-    }
 
-    public void setStatus(Object status) {
-    }
-}
