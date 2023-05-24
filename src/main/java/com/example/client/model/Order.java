@@ -2,17 +2,17 @@ package com.example.client.model;
 
 public class Order {
 
-    private int id;
+    private Long id;
     private String customerName;
     private String orderStatus;
     private String orderSummary;
     // Add other order fields
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,5 +37,14 @@ public class Order {
 
     public void setOrderSummary(String orderSummary) {
         this.orderSummary = orderSummary;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", customerName='" + customerName + '\'' +
+                // Include other fields in the string representation
+                '}';
     }
 }
