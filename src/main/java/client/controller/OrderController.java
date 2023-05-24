@@ -32,6 +32,6 @@ public class OrderController {
 
         // Publish the order to Kafka
         kafkaTemplate.send("order-topic", order.getId(), order);
-        
+      ///have issue
     }
 }
