@@ -29,9 +29,9 @@ public class OrderController {
 
 
         // Publish the order to Kafka
-        kafkaTemplate.send("order-topic", order.getId() , order);
-                return ResponseEntity.ok("Success");
-      ///have issue
+        kafkaTemplate.send("order-topic", order.getId(), order);
+        return ResponseEntity.ok("Success");
+        ///have issue
     }
 
     @GetMapping("/{orderId}/status")
@@ -44,5 +44,6 @@ public class OrderController {
             // Handle case when order is not found
             throw new RuntimeException("Order not found");
         }
+    }
 }
 //об map створено окремо, щоб контролер окремо зчитутався там де кафка
