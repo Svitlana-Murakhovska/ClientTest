@@ -1,4 +1,4 @@
-package com.example.ClientTest;
+package client;
 
 import com.example.client.model.Order;
 import org.springframework.boot.SpringApplication;

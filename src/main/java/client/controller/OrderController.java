@@ -29,21 +29,21 @@ public class OrderController {
 
 
         // Publish the order to Kafka
-        kafkaTemplate.send("order-topic", order.getId(), order);
+       // kafkaTemplate.send("order-topic", order.getId(), order);
         return ResponseEntity.ok("Success");
         ///have issue
     }
 
     @GetMapping("/{orderId}/status")
     public String getOrderStatus(@PathVariable Long orderId) {
-        OrderRepository orderRepository = null;
-        Order order = orderRepository.findById(orderId);
+        //int Zmina = 5;
+        Order order= orderMap.get(orderId);
         if (order != null) {
             return order.getStatus();
         } else {
-            // Handle case when order is not found
-            throw new RuntimeException("Order not found");
+          return "Order not found";
         }
     }
 }
-//об map створено окремо, щоб контролер окремо зчитутався там де кафка
+///kafka template  - описати, розібратись (чому не працює)
+// перенести все в клієнт фолдер

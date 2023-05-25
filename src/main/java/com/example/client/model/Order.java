@@ -23,6 +23,7 @@ public class Order {
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
     public String getOrderStatus() {
         return orderStatus;
     }
@@ -40,7 +41,9 @@ public class Order {
     }
 
     public String getStatus() {
+        return null;
     }
+
 }
 
 
