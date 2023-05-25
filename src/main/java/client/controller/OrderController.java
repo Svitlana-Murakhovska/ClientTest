@@ -1,13 +1,11 @@
 package client.controller;
 
+import client.kafka.OrderRepository;
 import com.example.client.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,5 +33,16 @@ public class OrderController {
                 return ResponseEntity.ok("Success");
       ///have issue
     }
+
+    @GetMapping("/{orderId}/status")
+    public String getOrderStatus(@PathVariable Long orderId) {
+        OrderRepository orderRepository = null;
+        Order order = orderRepository.findById(orderId);
+        if (order != null) {
+            return order.getStatus();
+        } else {
+            // Handle case when order is not found
+            throw new RuntimeException("Order not found");
+        }
 }
 //об map створено окремо, щоб контролер окремо зчитутався там де кафка

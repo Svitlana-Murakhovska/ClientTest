@@ -39,6 +39,8 @@ public class Order {
         this.orderSummary = orderSummary;
     }
 
- }
+    public String getStatus() {
+    }
+}
 
 
