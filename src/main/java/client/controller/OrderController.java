@@ -27,7 +27,7 @@ public class OrderController {
 
 
         // Publish the order to Kafka
-       kafkaTemplate.send("order-topic", order.getId(), order);
+       kafkaTemplate.send("order-topic", order);
         return ResponseEntity.ok("Success");
         ///have issue
     }
@@ -37,7 +37,7 @@ public class OrderController {
         //int Zmina = 5;
         Order order= orderMap.get(orderId);
         if (order != null) {
-            return order.getStatus();
+            return order.getOrderStatus();
         } else {
           return "Order not found";
         }

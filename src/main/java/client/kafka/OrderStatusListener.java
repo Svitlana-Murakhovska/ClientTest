@@ -19,11 +19,9 @@ public class OrderStatusListener {
     @KafkaListener(topics = "order-topic", groupId = "order-group")
     public void listen(Order updatedOrder) {
         // Обновление статуса заказа в базе данных
-        OrderRepository orderRepository = new OrderRepository();
-        Order existingOrder = orderRepository.findById(updatedOrder.getId());
+        Order existingOrder = orderMap.get(updatedOrder.getId());
         if (existingOrder != null) {
             existingOrder.setOrderStatus(updatedOrder.getOrderStatus());
-            orderRepository.save(existingOrder);
         }
     }
 }
