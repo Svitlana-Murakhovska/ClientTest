@@ -1,6 +1,6 @@
 package client;
 
-import com.example.client.model.Order;
+import client.model.Order;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

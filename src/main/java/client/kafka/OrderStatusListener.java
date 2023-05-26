@@ -1,6 +1,6 @@
 package client.kafka;
 
-import com.example.client.model.Order;
+import client.model.Order;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package client.kafka;
 
-import com.example.client.model.Order;
+import client.model.Order;
 
 public class OrderRepository {
     public Order findById(Long id) {

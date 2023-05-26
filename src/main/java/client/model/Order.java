@@ -1,4 +1,4 @@
-package com.example.client.model;
+package client.model;
 
 public class Order {
 
