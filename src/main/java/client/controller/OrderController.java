@@ -27,7 +27,7 @@ public class OrderController {
 
 
         // Publish the order to Kafka
-       // kafkaTemplate.send("order-topic", order.getId(), order);
+       kafkaTemplate.send("order-topic", order.getId(), order);
         return ResponseEntity.ok("Success");
         ///have issue
     }
