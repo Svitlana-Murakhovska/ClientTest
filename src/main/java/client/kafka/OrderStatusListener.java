@@ -16,12 +16,23 @@ public class OrderStatusListener {
             this.orderMap = orderMap;
         }
 
-    @KafkaListener(topics = "order-topic", groupId = "order-group")
-    public void listen(Order updatedOrder) {
-        // Обновление статуса заказа в базе данных
-        Order existingOrder = orderMap.get(updatedOrder.getId());
-        if (existingOrder != null) {
-            existingOrder.setOrderStatus(updatedOrder.getOrderStatus());
-        }
+//    @KafkaListener(topics = "order-topic", groupId = "order-group")
+//    public void listen(Order updatedOrder) {
+//        // Обновление статуса заказа в базе данных
+//        Order existingOrder = orderMap.get(updatedOrder.getId());
+//        if (existingOrder != null) {
+//            existingOrder.setOrderStatus(updatedOrder.getOrderStatus());
+//        }
+//    }
+
+    @KafkaListener(topics = "notification-topic", groupId = "order-group")
+    public void listenNotification(Order notification) {
+        // Process the received notification
+        // You can perform any actions here based on the received notification
+        System.out.println("Received notification: ID=" + notification.getId() + ", Order Status=" + notification.getOrderStatus());
     }
+
+
+
+
 }
