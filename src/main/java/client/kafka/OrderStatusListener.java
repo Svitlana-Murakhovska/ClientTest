@@ -1,5 +1,6 @@
 package client.kafka;
 
+import client.model.Notification;
 import client.model.Order;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -26,10 +27,12 @@ public class OrderStatusListener {
 //    }
 
     @KafkaListener(topics = "notification-topic", groupId = "order-group")
-    public void listenNotification(Order notification) {
-        // Process the received notification
-        // You can perform any actions here based on the received notification
-        System.out.println("Received notification: ID=" + notification.getId() + ", Order Status=" + notification.getOrderStatus());
+    public void listenNotification(Notification notification) {
+        Order existingOrder = orderMap.get(notification.getId());
+        if (existingOrder != null) {
+            existingOrder.setOrderStatus(notification.getOrderStatus());
+            System.out.println("Received notification: ID=" + notification.getId() + ", Order Status=" + notification.getOrderStatus());
+        }
     }
 
 
