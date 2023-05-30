@@ -26,7 +26,7 @@ public class OrderStatusListener {
 //        }
 //    }
 
-    @KafkaListener(topics = "notification-topic", groupId = "order-group")
+    @KafkaListener(topics = "notification-topic", groupId = "client-group")
     public void listenNotification(Notification notification) {
         Order existingOrder = orderMap.get(notification.getId());
         if (existingOrder != null) {
